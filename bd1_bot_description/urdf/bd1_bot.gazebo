@@ -9,62 +9,50 @@
 <xacro:property name="part_color" value="Gazebo/Red" />
 <xacro:property name="ear_color" value="Gazebo/Green" />
 <xacro:property name="antenna_color" value="Gazebo/Orange" />
-<xacro:property name="tire_color" value="Gazebo/Black" />
+<xacro:property name="tyre_color" value="Gazebo/Black" />
 <xacro:property name="rim_color" value="Gazebo/Yellow" />
 
 <gazebo>
-  <plugin filename="libgazebo_ros_control.so" name="control"/>
+  <plugin name="control" filename="libgazebo_ros_control.so"/>
 </gazebo>
+
 <gazebo>
   <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-
     <!-- Plugin update rate in Hz -->
-    <updateRate>10</updateRate>
+    <update_rate>100</update_rate>
 
     <!-- Name of left joint, defaults to `left_joint` -->
-    <leftJoint>left_wheel_joint</leftJoint>
+    <left_joint>left_wheel_joint</left_joint>
 
     <!-- Name of right joint, defaults to `right_joint` -->
-    <rightJoint>right_wheel_joint</rightJoint>
+    <right_joint>right_wheel_joint</right_joint>
 
     <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
-    <wheelAcceleration>1.0</wheelAcceleration>
+    <max_wheel_acceleration>1.0</max_wheel_acceleration>
 
     <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
-    <wheelTorque>20</wheelTorque>
-
-    <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
-    <commandTopic>cmd_vel</commandTopic>
-
-    <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
-    <odometryTopic>odom</odometryTopic>
+    <max_wheel_torque>20</max_wheel_torque>
 
     <!-- Odometry frame, defaults to `odom` -->
-    <odometryFrame>odom</odometryFrame>
+    <odometry_frame>odom</odometry_frame>
 
     <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
     <robotBaseFrame>base_link</robotBaseFrame>
 
     <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
-    <odometrySource>1</odometrySource>
+    <!-- <odometrySource>1</odometrySource> -->
 
     <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-    <publishWheelTF>true</publishWheelTF>
+    <!-- <publishWheelTF>true</publishWheelTF> -->
 
     <!-- Set to true to publish transforms for the odometry, defaults to true -->
-    <publishOdom>true</publishOdom>
-
-    <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
-    <publishWheelJointState>true</publishWheelJointState>
+    <publish_odom>true</publish_odom>
 
     <!-- Set to true to swap right and left wheels, defaults to true -->
-    <legacyMode>false</legacyMode>
+    <!-- <legacyMode>false</legacyMode> -->
   </plugin>
 </gazebo>
 
-<gazebo>
-  <plugin name="control" filename="libgazebo_ros_control.so"/>
-</gazebo>
 <gazebo reference="base_link">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
