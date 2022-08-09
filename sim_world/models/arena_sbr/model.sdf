@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="arena_sbr">
+    <static>true</static>
+    <link name="link">
+      <collision name="box">
+        <pose>0 0 0.02 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena_sbr/meshes/arena_sbr.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0.02 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena_sbr/meshes/arena_sbr.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -26,6 +26,9 @@ class SelfBalancingBot(Node):
         print("x = %.5f, y = %.5f, z = %.5f, w = %.5f" % \
             (msg.pose.pose.orientation.x, msg.pose.pose.orientation.y,
              msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))
+        velocity = Twist()
+        velocity.linear.x = -0.25
+        self.publisher.publish(velocity)
 
 def main():
     rclpy.init()

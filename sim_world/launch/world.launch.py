@@ -25,7 +25,7 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
           'world',
-          default_value=[os.path.join(pkg_sim_world, 'worlds', 'playground.world'), ''],
+          default_value=[os.path.join(pkg_sim_world, 'worlds', 'arena.world'), ''],
           description='SDF world file'),
         gazebo
     ])
