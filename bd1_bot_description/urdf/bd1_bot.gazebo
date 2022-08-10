@@ -57,7 +57,7 @@
     <sensor name="rplidar_a3" type="ray">
         <always_on>true</always_on>
         <visualize>false</visualize>
-        <pose>0.0 0 0.0 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <update_rate>100</update_rate>
         <ray>
           <scan>
@@ -88,6 +88,35 @@
           <frame_name>head</frame_name>
         </plugin>
     </sensor>
+</gazebo>
+
+<gazebo reference="fake_camera_1">
+  <sensor type="camera" name="ov_camera">
+    <update_rate>60</update_rate>
+    <visualize>false</visualize>
+    <camera name="head">
+      <horizontal_fov>1.3962634</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.02</near>
+        <far>100</far>
+      </clip>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.007</stddev>
+      </noise>
+    </camera>
+    <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+      <ros>
+        <remapping>image_raw:=image</remapping>
+      </ros>
+    </plugin>
+  </sensor>
 </gazebo>
 
 <gazebo reference="base_link">
@@ -289,6 +318,13 @@
 
 <gazebo reference="left_eye_ball_1">
   <material>${tyre_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="ov_camera_1">
+  <material>${ear_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
