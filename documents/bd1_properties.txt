@@ -1,0 +1,52 @@
+General
+    Part Number bd1_bot
+    Part Name   bd1_bot v11
+    Description
+    Material Name   (Various)
+
+Manage
+    Item Number
+    Lifecycle
+    Revision
+    State   Working
+    Change Order
+
+Physical
+    Mass    2674.664 g
+    Volume  2.422E+06 mm^3
+    Density 0.001 g / mm^3
+    Area    4.187E+05 mm^2
+    World X,Y,Z 0.00 mm, 0.00 mm, 0.00 mm
+    Center of Mass  2.161 mm, 2.651 mm, 216.517 mm
+    Bounding Box
+        Length  172.543 mm
+        Width   248.43 mm
+        Height  364.395 mm
+    Moment of Inertia at Center of Mass   (g mm^2)
+        Ixx 2.530E+07
+        Ixy -90495.566
+        Ixz -5.278E+05
+        Iyx -90495.566
+        Iyy 2.358E+07
+        Iyz -1.418E+06
+        Izx -5.278E+05
+        Izy -1.418E+06
+        Izz 1.076E+07
+    Moment of Inertia at Origin   (g mm^2)
+        Ixx 1.507E+08
+        Ixy -1.058E+05
+        Ixz -1.779E+06
+        Iyx -1.058E+05
+        Iyy 1.490E+08
+        Iyz -2.953E+06
+        Izx -1.779E+06
+        Izy -2.953E+06
+        Izz 1.079E+07
+
+#####################################################
+mass of single wheel = 29.885 g
+mass of single motor = 57.542 g
+Radius of the wheel = 29.885 mm
+Height of the bot from the ground = 314.895 mm
+Height of the bot above the motor = 266.03 mm
+#####################################################
