@@ -11,7 +11,8 @@ from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
 from tf_transformations import euler_from_quaternion
 
-# Class Self Balancing Bot
+from bd1_self_balancer import PID_controller
+
 class SelfBalancingBot(Node):
     """
     Class SelfBalancingBot
@@ -23,22 +24,17 @@ class SelfBalancingBot(Node):
         """
         # Initializing Node
         super().__init__('self_balancer')
-        # PID Variables
-        self.position = [0.0, 0.0, 0.0]
-        self.Kp, self.Ki, self.Kd = 16.5, 1e-5, 350
-        self.p, self.prev_error, self.error_sum = 1e-4, 0, 0
-
+        self.kp,self.ki,self.kd = 1,0,0
+        self.vel = Twist()
         self.publisher = self.create_publisher(Twist, '/cmd_vel', 1)
         self.create_subscription(Odometry, '/odom', self.pos_callback, 1)
-        self.velocity = Twist()
 
     # Position Callback
     def pos_callback(self, msg):
-        """
-        callback function for ROS2 Subscriber to the topic /odom
-        """
-        print("----------------------------")
-        print("----------Position----------")
+        self.kp = 30
+        self.posi = msg.pose.pose.position
+        self.orient = msg.pose.pose.orientation
+        print("------------Position-------------")
         print("x = %.5f, y = %.5f, z = %.5f" % \
             (msg.pose.pose.position.x, msg.pose.pose.position.y,
              msg.pose.pose.position.z))
@@ -48,41 +44,20 @@ class SelfBalancingBot(Node):
         print("x = %.5f, y = %.5f, z = %.5f, w = %.5f" % \
             (msg.pose.pose.orientation.x, msg.pose.pose.orientation.y,
              msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))
-        orientation_list = [msg.pose.pose.orientation.x, msg.pose.pose.orientation.y,
-             msg.pose.pose.orientation.z, msg.pose.pose.orientation.w]
-
-        # Converting Quaternion to euler angles
-        self.r, self.p, self.y = euler_from_quaternion(orientation_list)
-        print("-------roll pitch yaw-------")
-        print(self.r, self.p, self.y)
-
-        # Computing Error (for Proportional Term)
-        self.pitch_error = self.position[1] - self.p
-        print("Pitch Error = %f" % self.pitch_error)
-
-        # Computing Change in Error (For Derivative Term)
-        self.change_in_error = self.pitch_error - self.prev_error
-        print("Change in Error = %f" % self.change_in_error)
-
-        # Computing the output of controller
-        self.velocity.linear.x = (self.Kp * self.pitch_error) + \
-                                 (self.Ki * self.error_sum) + \
-                                 (self.Kd * self.change_in_error)
-        print("PID = %f" % self.velocity.linear.x)
-
-        # Computing Sum of errors (For Integral Term)
-        self.error_sum += self.pitch_error
-        print("Error Sum = %f" % self.error_sum)
-
-        # Updating pervious errors
-        self.prev_error = self.pitch_error
-        print("Previous Error = %f" % self.prev_error)
-
-        # print(self.velocity.linear.x)
-        self.publisher.publish(self.velocity)
-
-        # Reducing sudden change
-        time.sleep(0.05)
+        
+        error = (0.707-self.orient.w)
+        print("error = ", error)
+        out = self.kp*error
+        
+        if self.posi.x < 0 and self.orient.w <= 0.9999:
+            self.vel.linear.x = -out
+            # self.vel.linear.x = -2.0
+            print("Wheel rotating backward , veloity = ",self.vel.linear.x)
+        else:
+            # self.vel.linear.x = 2.0
+            self.vel.linear.x = out
+            print("Wheel rotating forward , veloity = ", self.vel.linear.x )
+        self.publisher.publish(self.vel)
 
 # Main Function
 def main():
