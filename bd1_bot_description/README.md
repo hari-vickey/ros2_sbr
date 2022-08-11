@@ -20,6 +20,7 @@ To export the CAD model to the ROS2 package there are some important rules to fo
 ## Test the Package
 
 After exporting the design, there are some steps to add color and gazebo plugins.
+Get to know some of the plugins available on ROS Gazebo package using the [link](https://medium.com/@bytesrobotics/a-review-of-the-ros2-urdf-gazebo-sensor-91e947c633d7)
 1. Copy-Paste the exported ROS2 package into the ROS2 workspace.
 2. Open urdf/bd1_bot.gazebo. To add or change color to the component. Edit this file as shown in the image.
     ![](https://github.com/hari-vickey/ROS2-Self-Balancing-Bot/blob/main/documents/images/change_color.png)
