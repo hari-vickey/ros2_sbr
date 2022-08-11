@@ -24,14 +24,14 @@ class SelfBalancingBot(Node):
         """
         # Initializing Node
         super().__init__('self_balancer')
-
+        self.kp,self.ki,self.kd = 1,0,0
         self.vel = Twist()
         self.publisher = self.create_publisher(Twist, '/cmd_vel', 1)
         self.create_subscription(Odometry, '/odom', self.pos_callback, 1)
 
     # Position Callback
     def pos_callback(self, msg):
-
+        self.kp = 30
         self.posi = msg.pose.pose.position
         self.orient = msg.pose.pose.orientation
         print("------------Position-------------")
@@ -44,13 +44,19 @@ class SelfBalancingBot(Node):
         print("x = %.5f, y = %.5f, z = %.5f, w = %.5f" % \
             (msg.pose.pose.orientation.x, msg.pose.pose.orientation.y,
              msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))
-
-        if self.posi.x > 0:
-            self.vel.linear.x = -2.0
-            print("Wheel rotating backward ")
+        
+        error = (0.707-self.orient.w)
+        print("error = ", error)
+        out = self.kp*error
+        
+        if self.posi.x < 0 and self.orient.w <= 0.9999:
+            self.vel.linear.x = -out
+            # self.vel.linear.x = -2.0
+            print("Wheel rotating backward , veloity = ",self.vel.linear.x)
         else:
-            self.vel.linear.x = 2.0
-            print("Wheel rotating forward")
+            # self.vel.linear.x = 2.0
+            self.vel.linear.x = out
+            print("Wheel rotating forward , veloity = ", self.vel.linear.x )
         self.publisher.publish(self.vel)
 
 # Main Function
