@@ -46,7 +46,8 @@ Physical
 #####################################################
 mass of single wheel = 29.885 g
 mass of single motor = 57.542 g
-Radius of the wheel = 29.885 mm
-Height of the bot from the ground = 314.895 mm
-Height of the bot above the motor = 266.03 mm
+mass of single tyre  = 24.104 g
+Radius of the wheel = 37 mm
+Height of the bot from the ground = 315.336 mm
+Height of the bot above the motor = 241.336 mm
 #####################################################
