@@ -120,7 +120,7 @@
 </gazebo>
 
 <gazebo reference="base_link">
-  <material>${body_color}</material>
+  <material>${rim_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
@@ -268,7 +268,7 @@
 </gazebo>
 
 <gazebo reference="head_protector_1">
-  <material>${tyre_color}</material>
+  <material>${ear_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>

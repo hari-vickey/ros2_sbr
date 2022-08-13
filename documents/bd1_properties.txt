@@ -1,8 +1,8 @@
 General
     Part Number bd1_bot
-    Part Name   bd1_bot v11
+    Part Name   bd1_bot v2
     Description
-    Material Name   (Various)
+    Material Name   ABS Plastic
 
 Manage
     Item Number
@@ -12,42 +12,46 @@ Manage
     Change Order
 
 Physical
-    Mass    2674.664 g
-    Volume  2.422E+06 mm^3
+    Mass    2597.758 g
+    Volume  2.451E+06 mm^3
     Density 0.001 g / mm^3
-    Area    4.187E+05 mm^2
+    Area    4.245E+05 mm^2
     World X,Y,Z 0.00 mm, 0.00 mm, 0.00 mm
-    Center of Mass  2.161 mm, 2.651 mm, 216.517 mm
+    Center of Mass  -0.009 mm, 0.005 mm, 208.911 mm
     Bounding Box
-        Length  172.543 mm
-        Width   248.43 mm
-        Height  364.395 mm
+        Length  168.086 mm
+        Width   238.096 mm
+        Height  343.602 mm
     Moment of Inertia at Center of Mass   (g mm^2)
-        Ixx 2.530E+07
-        Ixy -90495.566
-        Ixz -5.278E+05
-        Iyx -90495.566
-        Iyy 2.358E+07
-        Iyz -1.418E+06
-        Izx -5.278E+05
-        Izy -1.418E+06
-        Izz 1.076E+07
+        Ixx 1.949E+07
+        Ixy -419.944
+        Ixz -1366.84
+        Iyx -419.944
+        Iyy 1.819E+07
+        Iyz -93338.271
+        Izx -1366.84
+        Izy -93338.271
+        Izz 9.999E+06
     Moment of Inertia at Origin   (g mm^2)
-        Ixx 1.507E+08
-        Ixy -1.058E+05
-        Ixz -1.779E+06
-        Iyx -1.058E+05
-        Iyy 1.490E+08
-        Iyz -2.953E+06
-        Izx -1.779E+06
-        Izy -2.953E+06
-        Izz 1.079E+07
+        Ixx 1.329E+08
+        Ixy -419.82
+        Ixz 3550.443
+        Iyx -419.82
+        Iyy 1.316E+08
+        Iyz -96194.548
+        Izx 3550.443
+        Izy -96194.548
+        Izz 9.999E+06
+
 
 #####################################################
 mass of single wheel = 29.885 g
-mass of single motor = 57.542 g
-mass of single tyre  = 24.104 g
-Radius of the wheel = 37 mm
-Height of the bot from the ground = 315.336 mm
-Height of the bot above the motor = 241.336 mm
+mass of single motor = 22.59 g
+mass of single tyre  = 27.473 g
+radius of the wheel = 37 mm
+height of the bot from the ground = 295.986 mm
+height of the bot above the motor = 258.986 mm
+wheel seperation 149.5mm
+wheel diameter 74mm
+distance between motor (faces) 59.5mm
 #####################################################
