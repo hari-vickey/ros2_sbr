@@ -6,6 +6,7 @@ PID Controller
 import math
 import time
 import rclpy
+import threading
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
@@ -24,9 +25,9 @@ class SelfBalancingBot(Node):
         # Initializing Node
         super().__init__('self_balancer')
         # PID Variables
-        self.position = [0.0, 0.0, 0.0]
+        self.set_pos = 0.0
         self.Kp, self.Ki, self.Kd = 16.5, 1e-5, 350
-        self.p, self.prev_error, self.error_sum = 1e-4, 0, 0
+        self.curr_pos, self.prev_error, self.error_sum = 1e-4, 0, 0
 
         self.publisher = self.create_publisher(Twist, '/cmd_vel', 1)
         self.create_subscription(Odometry, '/odom', self.pos_callback, 1)
@@ -37,52 +38,60 @@ class SelfBalancingBot(Node):
         """
         callback function for ROS2 Subscriber to the topic /odom
         """
+        orientation_list = [msg.pose.pose.orientation.x, msg.pose.pose.orientation.y,
+             msg.pose.pose.orientation.z, msg.pose.pose.orientation.w]
+
+        # Converting Quaternion to euler angles
+        self.curr_pos, p, y = euler_from_quaternion(orientation_list)
+
+        # Computing Error (for Proportional Term)
+        self.pitch_error = self.curr_pos - self.set_pos
+
+        # Computing Change in Error (For Derivative Term)
+        self.change_in_error = self.pitch_error - self.prev_error
+
+        # Computing the output of controller
+        self.velocity.linear.x = ((self.Kp * self.pitch_error) + \
+                                 (self.Ki * self.error_sum) + \
+                                 (self.Kd * self.change_in_error))
+
+        # Computing Sum of errors (For Integral Term)
+        self.error_sum += self.pitch_error
+
+        # Constraining Error Sum in the range -300 to 300
+        if int(self.error_sum) not in range(-300, 300):
+            if self.error_sum <= 0:
+                self.error_sum = self.error_sum + 300
+            else:
+                self.error_sum = self.error_sum - 300
+
+        # Updating pervious errors
+        self.prev_error = self.pitch_error
+
+        # print(self.velocity.linear.x)
+        self.publisher.publish(self.velocity)
+
+        # Position of the Bot
         print("----------------------------")
         print("----------Position----------")
         print("x = %.5f, y = %.5f, z = %.5f" % \
             (msg.pose.pose.position.x, msg.pose.pose.position.y,
              msg.pose.pose.position.z))
-
-        # Quartenion Angular Co-ordinates
+        # Quaternion Position
         print("---------Quaternion---------")
         print("x = %.5f, y = %.5f, z = %.5f, w = %.5f" % \
             (msg.pose.pose.orientation.x, msg.pose.pose.orientation.y,
              msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))
-        orientation_list = [msg.pose.pose.orientation.x, msg.pose.pose.orientation.y,
-             msg.pose.pose.orientation.z, msg.pose.pose.orientation.w]
-
-        # Converting Quaternion to euler angles
-        self.r, self.p, self.y = euler_from_quaternion(orientation_list)
+        # Euler Angles
         print("-------roll pitch yaw-------")
-        print(self.r, self.p, self.y)
-
-        # Computing Error (for Proportional Term)
-        self.pitch_error = self.position[1] - self.p
-        print("Pitch Error = %f" % self.pitch_error)
-
-        # Computing Change in Error (For Derivative Term)
-        self.change_in_error = self.pitch_error - self.prev_error
-        print("Change in Error = %f" % self.change_in_error)
-
-        # Computing the output of controller
-        self.velocity.linear.x = (self.Kp * self.pitch_error) + \
-                                 (self.Ki * self.error_sum) + \
-                                 (self.Kd * self.change_in_error)
-        print("PID = %f" % self.velocity.linear.x)
-
-        # Computing Sum of errors (For Integral Term)
-        self.error_sum += self.pitch_error
-        print("Error Sum = %f" % self.error_sum)
-
-        # Updating pervious errors
-        self.prev_error = self.pitch_error
+        print(math.degrees(self.curr_pos), math.degrees(p), math.degrees(y))
+        # PID Values
+        print("---------PID Values---------")
         print("Previous Error = %f" % self.prev_error)
-
-        # print(self.velocity.linear.x)
-        self.publisher.publish(self.velocity)
-
-        # Reducing sudden change
-        time.sleep(0.05)
+        print("Error Sum = %f" % self.error_sum)
+        print("PID = %f" % self.velocity.linear.x)
+        print("Change in Error = %f" % self.change_in_error)
+        print("Pitch Error = %f" % self.pitch_error)
 
 # Main Function
 def main():
