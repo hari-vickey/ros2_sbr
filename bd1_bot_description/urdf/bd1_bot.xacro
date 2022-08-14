@@ -6,7 +6,7 @@
 <xacro:include filename="$(find bd1_bot_description)/urdf/bd1_bot.gazebo" />
 <link name="base_link">
   <inertial>
-    <origin xyz="-3.180834059638465e-05 -0.02893757368740919 0.17717056516547702" rpy="0 0 0"/>
+    <origin xyz="-3.180834059638465e-05 -0.028937573687409172 0.17717056516547702" rpy="0 0 0"/>
     <mass value="0.6871683490298791"/>
     <inertia ixx="0.001278" iyy="0.000754" izz="0.001226" ixy="0.0" iyz="9e-06" ixz="-0.0"/>
   </inertial>
@@ -27,9 +27,9 @@
 
 <link name="left_top_leg_1">
   <inertial>
-    <origin xyz="0.008146638140998697 0.0395674730824959 -0.014401686856261642" rpy="0 0 0"/>
-    <mass value="0.11765454158339926"/>
-    <inertia ixx="0.000238" iyy="5.5e-05" izz="0.000189" ixy="-6e-06" iyz="5.6e-05" ixz="2e-06"/>
+    <origin xyz="0.008170600100975256 0.0394894379137513 -0.014373284377612094" rpy="0 0 0"/>
+    <mass value="0.11806434962739475"/>
+    <inertia ixx="0.000239" iyy="5.5e-05" izz="0.00019" ixy="-6e-06" iyz="5.6e-05" ixz="2e-06"/>
   </inertial>
   <visual>
     <origin xyz="-0.04375 0.017055 -0.176837" rpy="0 0 0"/>
@@ -384,9 +384,9 @@
 
 <link name="head_1">
   <inertial>
-    <origin xyz="-1.9567650462359864e-06 -0.02143844644089888 0.008932494875529162" rpy="0 0 0"/>
-    <mass value="1.1993912366195452"/>
-    <inertia ixx="0.003148" iyy="0.002464" izz="0.005147" ixy="0.0" iyz="4.1e-05" ixz="0.0"/>
+    <origin xyz="-1.7784182525826254e-06 -0.021451548337959786 0.00893485011990891" rpy="0 0 0"/>
+    <mass value="1.199572908129388"/>
+    <inertia ixx="0.00315" iyy="0.002464" izz="0.005149" ixy="0.0" iyz="4.1e-05" ixz="0.0"/>
   </inertial>
   <visual>
     <origin xyz="0.0 -0.02861 -0.258986" rpy="0 0 0"/>
