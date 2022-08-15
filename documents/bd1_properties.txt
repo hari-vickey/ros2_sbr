@@ -1,40 +1,47 @@
 General
-    Part Number bd1_bot
-    Part Name   bd1_bot v5
-    Description
-    Material Name   ABS Plastic
+	Part Number	Untitled
+	Part Name	Untitled
+	Description
+	Material Name	ABS Plastic
+
+Manage
+	Item Number
+	Lifecycle
+	Revision
+	State
+	Change Order
 
 Physical
-    Mass    2598.349 g
-    Volume  2.451E+06 mm^3
-    Density 0.001 g / mm^3
-    Area    4.246E+05 mm^2
-    World X,Y,Z 0.00 mm, 0.00 mm, 0.00 mm
-    Center of Mass  0.00 mm, 0.00 mm, 208.91 mm
-    Bounding Box
-        Length  168.086 mm
-        Width   238.096 mm
-        Height  343.602 mm
-    Moment of Inertia at Center of Mass   (g mm^2)
-        Ixx 1.950E+07
-        Ixy -404.296
-        Ixz -452.124
-        Iyx -404.296
-        Iyy 1.820E+07
-        Iyz -92215.443
-        Izx -452.124
-        Izy -92215.443
-        Izz 1.000E+07
-    Moment of Inertia at Origin   (g mm^2)
-        Ixx 1.329E+08
-        Ixy -404.296
-        Ixz -613.534
-        Iyx -404.296
-        Iyy 1.316E+08
-        Iyz -92063.15
-        Izx -613.534
-        Izy -92063.15
-        Izz 1.000E+07
+	Mass	2598.349 g
+	Volume	2.451E+06 mm^3
+	Density	0.001 g / mm^3
+	Area	4.246E+05 mm^2
+	World X,Y,Z	0.00 mm, 0.00 mm, 0.00 mm
+	Center of Mass	0.00 mm, 0.00 mm, 208.91 mm
+	Bounding Box
+		Length	168.086 mm
+		Width	238.096 mm
+		Height	343.602 mm
+	Moment of Inertia at Center of Mass   (g mm^2)
+		Ixx	1.950E+07
+		Ixy	-404.296
+		Ixz	-452.124
+		Iyx	-404.296
+		Iyy	1.820E+07
+		Iyz	-92215.443
+		Izx	-452.124
+		Izy	-92215.443
+		Izz	1.000E+07
+	Moment of Inertia at Origin   (g mm^2)
+		Ixx	1.329E+08
+		Ixy	-404.296
+		Ixz	-613.534
+		Iyx	-404.296
+		Iyy	1.316E+08
+		Iyz	-92063.15
+		Izx	-613.534
+		Izy	-92063.15
+		Izz	1.000E+07
 
 #####################################################
 mass of single wheel = 29.885 g
