@@ -1,4 +1,4 @@
-General
+m3General
 	Part Number	Untitled
 	Part Name	Untitled
 	Description
@@ -47,6 +47,7 @@ Physical
 mass of single wheel = 29.885 g
 mass of single motor = 22.59 g
 mass of single tyre  = 27.473 g
+radius of the motor = 15 mm
 radius of the wheel = 37 mm
 height of the bot from the ground = 295.986 mm
 height of the bot above the motor = 258.986 mm
