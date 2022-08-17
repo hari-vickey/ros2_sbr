@@ -26,7 +26,7 @@ class SelfBalancingBot(Node):
         super().__init__('self_balancer')
         # PID Variables
         self.set_pos = 0.0
-        self.Kp, self.Ki, self.Kd = 16.5, 1e-5, 350
+        self.Kp, self.Ki, self.Kd = 2, 0, 300
         self.curr_pos, self.prev_error, self.error_sum = 1e-4, 0, 0
 
         self.publisher = self.create_publisher(Twist, '/cmd_vel', 1)
@@ -47,6 +47,9 @@ class SelfBalancingBot(Node):
         # Computing Error (for Proportional Term)
         self.pitch_error = self.curr_pos - self.set_pos
 
+        # Computing Sum of errors (For Integral Term)
+        self.error_sum += self.pitch_error # This value is not used in trial and error method  
+
         # Computing Change in Error (For Derivative Term)
         self.change_in_error = self.pitch_error - self.prev_error
 
@@ -55,15 +58,14 @@ class SelfBalancingBot(Node):
                                  (self.Ki * self.error_sum) + \
                                  (self.Kd * self.change_in_error))
 
-        # Computing Sum of errors (For Integral Term)
-        self.error_sum += self.pitch_error
+        self.velocity.linear.x = self.velocity.linear.x*math.exp(4)
 
         # Constraining Error Sum in the range -300 to 300
-        if int(self.error_sum) not in range(-300, 300):
-            if self.error_sum <= 0:
-                self.error_sum = self.error_sum + 300
-            else:
-                self.error_sum = self.error_sum - 300
+        # if int(self.error_sum) not in range(-300, 300):
+        #     if self.error_sum <= 0:
+        #         self.error_sum = self.error_sum + 300
+        #     else:
+        #         self.error_sum = self.error_sum - 300
 
         # Updating pervious errors
         self.prev_error = self.pitch_error
@@ -93,6 +95,7 @@ class SelfBalancingBot(Node):
         print("Change in Error = %f" % self.change_in_error)
         print("Pitch Error = %f" % self.pitch_error)
 
+        print("Speed = ", self.velocity.linear.x)
 # Main Function
 def main():
     """
