@@ -10,6 +10,15 @@
             <uri>model://arena_sbr/meshes/arena_sbr.dae</uri>
           </mesh>
         </geometry>
+        <!-- <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+            </ode>
+          </friction>
+      </surface> -->
       </collision>
       <visual name="visual">
         <pose>0 0 0.02 0 0 0</pose>
