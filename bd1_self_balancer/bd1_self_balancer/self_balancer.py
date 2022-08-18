@@ -26,7 +26,7 @@ class SelfBalancingBot(Node):
         super().__init__('self_balancer')
         # PID Variables
         self.set_pos = 0.0
-        self.Kp, self.Ki, self.Kd = 2, 0, 300
+        self.Kp, self.Ki, self.Kd = 2, 0, 600
         self.curr_pos, self.prev_error, self.error_sum = 1e-4, 0, 0
 
         self.publisher = self.create_publisher(Twist, '/cmd_vel', 1)
