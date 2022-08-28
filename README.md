@@ -43,7 +43,6 @@ Do not forget to source ROS2 and Gazebo setup.bash in the ~/.bashrc file.
 
 * bd1_bot_description – ROS2 python package containing all the files related to bd1_bot for simulation
 * bd1_self_balancer – ROS2 python package to control and balance the bd1_bot in gazebo simulation
-* sim_world – ROS2 CPP package containing all the files related to adding simulation world in the gazebo
 * designFiles – BD1 bot design in Fusion360, SolidWorks and SketchUp Format are attached.
 * documents - Files related to Mathematical Modelling and documentation are added.
 
