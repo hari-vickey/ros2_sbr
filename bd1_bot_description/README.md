@@ -17,7 +17,7 @@ To export the CAD model to the ROS2 package there are some important rules to fo
 3. To color individual parts of the model, they should be attached as separate components.
 4. Do not move the components after creating joints in the model.
 
-## Test the Package
+## Adding ROS Gazebo Elements
 
 After exporting the design, there are some steps to add color and gazebo plugins.
 Get to know some of the plugins available on ROS Gazebo package using the [link](https://medium.com/@bytesrobotics/a-review-of-the-ros2-urdf-gazebo-sensor-91e947c633d7)
@@ -28,12 +28,14 @@ Get to know some of the plugins available on ROS Gazebo package using the [link]
    ![](https://github.com/hari-vickey/ROS2-Self-Balancing-Bot/blob/main/documents/images/add_plugin.png)
 4. Once all the changes are made, build the package and source it.
 
+## Test the Package
+
 Run the command to test the package.
 
     # Open the design on Rviz
     ros2 launch bd1_bot_description display.launch.py
     # Open the design on Gazebo
-    ros2 launch bd1_bot_description display.launch.py
+    ros2 launch bd1_bot_description gazebo.launch.py
 
 Verify the added plugins.
 
