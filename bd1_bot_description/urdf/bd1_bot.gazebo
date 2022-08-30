@@ -33,13 +33,13 @@
     <odometry_frame>odom</odometry_frame>
 
     <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
-    <robotBaseFrame>base_link</robotBaseFrame>
+    <robot_base_frame>base_link</robot_base_frame>
 
     <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
-    <!-- <odometrySource>1</odometrySource> -->
+    <odometry_source>1</odometry_source>
 
     <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-    <!-- <publishWheelTF>true</publishWheelTF> -->
+    <publish_wheel_tf>false</publish_wheel_tf>
 
     <!-- Robot Wheel Seperation Distance in m -->
     <!-- <wheel_separation>0.1495</wheel_separation> -->
@@ -51,7 +51,7 @@
     <publish_odom>true</publish_odom>
 
     <!-- Set to true to swap right and left wheels, defaults to true -->
-    <!-- <legacyMode>false</legacyMode> -->
+    <!-- <legacy_mode>false</legacy_mode> -->
   </plugin>
 </gazebo>
 
