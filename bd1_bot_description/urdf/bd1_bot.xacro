@@ -635,11 +635,7 @@
 </link>
 
 <link name="fake_camera_1">
-  <inertial>
-    <origin xyz="-0.00010062533325747048 -0.0056682682583362315 0.0002650247252930782" rpy="0 0 0"/>
-    <mass value="0.0056389881980399275"/>
-    <inertia ixx="1e-06" iyy="1e-06" izz="1e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
-  </inertial>
+  <origin xyz="-0.00010062533325747048 -0.0056682682583362315 0.0002650247252930782" rpy="0 0 0"/>
 </link>
 
 <joint name="left_top_leg_fix" type="fixed">
