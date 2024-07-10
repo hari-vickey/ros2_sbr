@@ -31,12 +31,12 @@ class SelfBalancingBot(Node):
         self.curr_theta, self.prev_tilt_error, self.tilt_error_sum = 0.0, 0.0, 0.0
 
         # pos_pid variables
-        self.set_pos = 0.05
+        self.set_pos = 0.25
         self.pos_Kp, self.pos_Ki, self.pos_Kd = 20.0, 0.0, 0.0
         self.curr_pos, self.prev_pos_error, self.pos_error_sum = 0.0, 0.0, 0.0
 
         # yaw_pid values
-        self.set_yaw = 0.0
+        self.set_yaw = 3.14
         self.yaw_Kp, self.yaw_Ki, self.yaw_Kd = 10.0, 0.0, 0.0
         self.curr_yaw, self.prev_yaw_error, self.yaw_error_sum = 0.0, 0.0, 0.0
 
@@ -95,28 +95,27 @@ class SelfBalancingBot(Node):
         print("r = %.5f, p = %.5f, y = %.5f" % (math.degrees(self.curr_theta),
                                                 math.degrees(msg[7]), math.degrees(msg[8])))
         # tilt_pid Values
-        # print("-----------------P I D (theta) -------------------")
-        # print("Previous Error = %f" % self.prev_tilt_error)
-        # print("Error Sum = %f" % self.tilt_error_sum)
-        # print("theta PID = %f" % msg[9])
-        # print("Wheel Velocity = %f" % self.velocity.linear.x)
-        # # print("p = %.5f, i = %.5f, d = %.5f" % (theta_p, theta_i, theta_d))
-        # print("----------------------------------------\n")
-
-        # # pos_pid Values
-        # print("-----------------P I D (pos) -------------------")
-        # print("Previous Error = %f" % self.prev_pos_error)
-        # print("Error Sum = %f" % self.pos_error_sum)
-        # print("Pos PID = %f" % msg[10])
-        # print("Wheel Velocity = %f" % self.velocity.linear.x)
-        # print("----------------------------------------\n")
-
-        print("-----------------P I D (yaw) -------------------")
-        print("Previous Error = %f" % self.prev_yaw_error)
-        print("Error Sum = %f" % self.yaw_error_sum)
-        print("YAW PID = %f" % msg[11])
-        print("Wheel angular velocity = %f" % self.velocity.angular.z)
+        print("-----------------P I D (theta) -------------------")
+        print("Previous Error = %f" % self.prev_tilt_error)
+        print("Error Sum = %f" % self.tilt_error_sum)
+        print("theta PID = %f" % msg[9])
+        print("Wheel Velocity = %f" % self.velocity.linear.x)
         print("----------------------------------------\n")
+
+        # pos_pid Values
+        print("-----------------P I D (pos) -------------------")
+        print("Previous Error = %f" % self.prev_pos_error)
+        print("Error Sum = %f" % self.pos_error_sum)
+        print("Pos PID = %f" % msg[10])
+        print("Wheel Velocity = %f" % self.velocity.linear.x)
+        print("----------------------------------------\n")
+
+        # print("-----------------P I D (yaw) -------------------")
+        # print("Previous Error = %f" % self.prev_yaw_error)
+        # print("Error Sum = %f" % self.yaw_error_sum)
+        # print("YAW PID = %f" % msg[11])
+        # print("Wheel angular velocity = %f" % self.velocity.angular.z)
+        # print("----------------------------------------\n")
 
     # Position Callback
     def pos_callback(self, msg):
@@ -152,7 +151,7 @@ class SelfBalancingBot(Node):
         self.prev_yaw_error, self.yaw_error_sum, yaw_pid = self.pid_controller(*yaw_pid_ls)
 
         # wheel velocity publisher
-        self.velocity.linear.x = tilt_pid - pos_pid
+        self.velocity.linear.x = tilt_pid - -1 * pos_pid
         # self.velocity.angular.z = -1 *  yaw_pid/1000
         self.publisher.publish(self.velocity)
 
