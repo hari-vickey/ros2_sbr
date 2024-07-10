@@ -33,7 +33,7 @@
     <odometry_frame>odom</odometry_frame>
 
     <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
-    <robot_base_frame>base_link</robot_base_frame>
+    <robot_base_frame>left_top_leg_part_1</robot_base_frame>
 
     <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
     <odometry_source>1</odometry_source>
