@@ -4,10 +4,10 @@
 The BD1 Bot is re-modeled for self-balancing tasks from scratch using Fusion360. The CAD Model of our design is shown in the image. </p>
 
 <div style="text" align="center">
-    <img src="https://github.com/hari-vickey/ROS2-Self-Balancing-Bot/blob/main/documents/images/bd1_bot_fusion.png" />
+    <img src="./../assets/bd1_bot_fusion.png" />
 </div>
 
-Note: The steps mentioned below are only for users to develop their custom designs and test them on the Gazebo simulator.
+> *__**Note:**__ The steps mentioned below are only for users to develop their custom designs and test them on the Gazebo simulator.*
 
 After, completing the entire design of the CAD model, the design is converted to the ROS2 package using the [fusion2urdf-ros2](https://github.com/dheena2k2/fusion2urdf-ros2.git) repository. Instructions to install and use this plugin are mentioned on the repository itself.
 
@@ -48,5 +48,5 @@ Verify the added plugins.
     rqt
 
 <div style="text" align="center">
-    <img src="https://github.com/hari-vickey/ROS2-Self-Balancing-Bot/blob/main/documents/images/test_description_pkg.png" />
+    <img src="./../assets/test_description_pkg.png" />
 </div>
