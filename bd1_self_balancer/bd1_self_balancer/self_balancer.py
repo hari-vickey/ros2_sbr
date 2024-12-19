@@ -31,13 +31,13 @@ class SelfBalancingBot(Node):
         self.curr_theta, self.prev_tilt_error, self.tilt_error_sum = 0.0, 0.0, 0.0
 
         # pos_pid variables
-        self.set_pos = 0.25
-        self.pos_Kp, self.pos_Ki, self.pos_Kd = 20.0, 0.0, 0.0
+        self.set_pos = 0.0
+        self.pos_Kp, self.pos_Ki, self.pos_Kd = 20.0, 0.0, 5.0
         self.curr_pos, self.prev_pos_error, self.pos_error_sum = 0.0, 0.0, 0.0
 
         # yaw_pid values
-        self.set_yaw = 3.14
-        self.yaw_Kp, self.yaw_Ki, self.yaw_Kd = 10.0, 0.0, 0.0
+        self.set_yaw = 0.0
+        self.yaw_Kp, self.yaw_Ki, self.yaw_Kd = 0.0, 0.0, 0.0
         self.curr_yaw, self.prev_yaw_error, self.yaw_error_sum = 0.0, 0.0, 0.0
 
         self.create_subscription(Odometry, '/odom', self.pos_callback, 1)
@@ -151,7 +151,7 @@ class SelfBalancingBot(Node):
         self.prev_yaw_error, self.yaw_error_sum, yaw_pid = self.pid_controller(*yaw_pid_ls)
 
         # wheel velocity publisher
-        self.velocity.linear.x = tilt_pid - -1 * pos_pid
+        self.velocity.linear.x = tilt_pid - pos_pid
         # self.velocity.angular.z = -1 *  yaw_pid/1000
         self.publisher.publish(self.velocity)
 
