@@ -44,12 +44,17 @@ source ROS2 and Gazebo `setup.bash` in the `~/.bashrc` file.
     # ROS2 Workspace
     source ~/<ROS2-Workspace>/install/setup.bash
 
+## Mathematical model
+
+Use `bd1_properties.txt` to substitute appropriate values in A and B matrix and compute the final matrix. Use the A and B matrix to compute LQR Gain Matrix.
+
 ## Repository Structure
 
-- **assets** - images, bot properties are added.
+- **assets** – images, bot properties are added.
 - **bd1_bot_description** – ROS2 python package containing all the files related to bd1_bot for simulation
 - **bd1_self_balancer** – ROS2 python package to control and balance the bd1_bot in gazebo simulation
 - **designs** – BD1 bot design in Fusion360, SolidWorks and SketchUp Format are attached.
+- **model** – Robot mathematical model
 - **sim_world** – ROS2 CPP package containing the world files for gazebo simulation
 
 ## Demonstration
